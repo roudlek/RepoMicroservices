@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+@RequestMapping("/api")
 @RestController
 public class AccountRestController {
     @Autowired
@@ -23,9 +24,9 @@ public class AccountRestController {
     public BankAccount getBankAccountById(@PathVariable String id){
         return bankAccountRepository.findById(id).orElseThrow(() -> new RuntimeException("account with id " + id + " is not found"));
     }
-//@RequestBody is used to bind the request body to a method parameter, typically used to receive JSON or XML data in the
-// request body. The request body is converted to a Java object using a message converter.
-// This annotation is used for POST, PUT and PATCH requests.
+    //@RequestBody is used to bind the request body to a method parameter, typically used to receive JSON or XML data in the
+    // request body. The request body is converted to a Java object using a message converter.
+    // This annotation is used for POST, PUT and PATCH requests.
     @PostMapping("/bankAccounts")
     public BankAccount addBankAccount (@RequestBody BankAccount bankAccount){
         if(bankAccount.getId() == null || bankAccount.getId().isEmpty()) {
@@ -53,7 +54,6 @@ public class AccountRestController {
     @DeleteMapping("bankAccounts/{id}")
     public void deleteAccount(@PathVariable String id){
         bankAccountRepository.deleteById(id);
-
     }
 }
 
