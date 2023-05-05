@@ -1,20 +1,28 @@
 package com.aziz.accountservice.controllers;
 
+import com.aziz.accountservice.dto.BankAccountResponseDTO;
+import com.aziz.accountservice.dto.BankAccountUpdateRequestTDO;
 import com.aziz.accountservice.entities.BankAccount;
 import com.aziz.accountservice.enums.AccountType;
+import com.aziz.accountservice.mappers.BankAccountMapper;
+import com.aziz.accountservice.mappers.BankAccountMapperImpl;
 import com.aziz.accountservice.repositories.BankAccountRepository;
+import com.aziz.accountservice.sevices.BankAccountService;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RequestMapping("/api")
 @RestController
-public class AccountRestController {
+public class AccountRestController{
     @Autowired
     private BankAccountRepository bankAccountRepository;
-
+    @Autowired
+    private BankAccountService bankAccountService;
     @GetMapping("/bankAccounts")
     public List<BankAccount> getAllBankAccounts(){
         return bankAccountRepository.findAll();
@@ -37,6 +45,28 @@ public class AccountRestController {
             bankAccount.setType(Math.random() * 10 < 5 ? AccountType.CURRENT_ACCOUNT : AccountType.SAVING_ACCOUNT);
         }
         return  bankAccountRepository.save(bankAccount);
+    }
+
+    //En respecton les bons pratiques
+    @PostMapping("/bankAccounts/addUsingMapperClass")
+    public BankAccountResponseDTO addBankAccountUsingMapperClass (@RequestBody BankAccountUpdateRequestTDO bankAccountUpdateRequestTDO){
+        // Using mapstruct
+//        bankAccount.setId(UUID.randomUUID().toString());
+//        bankAccount.setCreatedAt(new Date());
+
+        BankAccountMapper bankAccountMapper = Mappers.getMapper(BankAccountMapper.class);
+
+        BankAccount bankAccount = bankAccountMapper.RequestTDOToBankAccount(bankAccountUpdateRequestTDO);
+
+//        bankAccount.setId(UUID.randomUUID().toString());
+//        bankAccount.setCreatedAt(new Date());
+        BankAccount savedBankAccount =  bankAccountRepository.save(bankAccount);
+        return bankAccountMapper.BankAccountToResponseDTO(savedBankAccount);
+    }
+    @PostMapping("/bankAccounts/AddUsingService")
+    public BankAccountResponseDTO addBankAccountUsingServiceClass (@RequestBody BankAccount bankAccount, BankAccountUpdateRequestTDO bankAccountUpdateRequestTDO){
+
+        return bankAccountService.addBankAccountInService(bankAccountUpdateRequestTDO);
     }
     @PutMapping("/bankAccounts/{id}")
     public BankAccount update(@PathVariable String id, @RequestBody BankAccount bankAccount) {
