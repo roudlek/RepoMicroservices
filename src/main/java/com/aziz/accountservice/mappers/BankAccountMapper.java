@@ -15,7 +15,7 @@ public interface BankAccountMapper {
     @Mapping(target = "currency", source = "bankAccount.currency")
     @Mapping(target = "type", source = "bankAccount.type")
     BankAccountResponseDTO BankAccountToResponseDTO(BankAccount bankAccount);
-
+//test
     @Mapping(target = "balance", source = "bankAccountUpdateRequestTDO.balance")
     @Mapping(target = "currency", source = "bankAccountUpdateRequestTDO.currency")
     @Mapping(target = "type", source = "bankAccountUpdateRequestTDO.type")
