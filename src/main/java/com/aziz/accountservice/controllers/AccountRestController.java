@@ -55,12 +55,18 @@ public class AccountRestController{
 //        bankAccount.setCreatedAt(new Date());
 
         BankAccountMapper bankAccountMapper = Mappers.getMapper(BankAccountMapper.class);
+        System.out.println(bankAccountUpdateRequestTDO.toString());
 
         BankAccount bankAccount = bankAccountMapper.RequestTDOToBankAccount(bankAccountUpdateRequestTDO);
+        System.out.println(bankAccount.toString());
 
-//        bankAccount.setId(UUID.randomUUID().toString());
-//        bankAccount.setCreatedAt(new Date());
+        bankAccount.setId(UUID.randomUUID().toString());
+        bankAccount.setCreatedAt(new Date());
+        System.out.println(bankAccount.toString());
+
         BankAccount savedBankAccount =  bankAccountRepository.save(bankAccount);
+        System.out.println(savedBankAccount.toString());
+
         return bankAccountMapper.BankAccountToResponseDTO(savedBankAccount);
     }
     @PostMapping("/bankAccounts/AddUsingService")
