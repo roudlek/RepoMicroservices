@@ -16,4 +16,9 @@ public class BankAccountMapperImpl implements BankAccountMapper {
     public BankAccount RequestTDOToBankAccount(BankAccountUpdateRequestTDO bankAccountUpdateRequestTDO) {
         return null;
     }
+
+    @Override
+    public BankAccountResponseDTO convertRequestTDOToResponseTDO(BankAccountUpdateRequestTDO requestTDO) {
+        return null;
+    }
 }
