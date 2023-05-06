@@ -5,7 +5,6 @@ import com.aziz.accountservice.dto.BankAccountUpdateRequestTDO;
 import com.aziz.accountservice.entities.BankAccount;
 import com.aziz.accountservice.enums.AccountType;
 import com.aziz.accountservice.mappers.BankAccountMapper;
-import com.aziz.accountservice.mappers.BankAccountMapperImpl;
 import com.aziz.accountservice.repositories.BankAccountRepository;
 import com.aziz.accountservice.sevices.BankAccountService;
 import org.mapstruct.factory.Mappers;
