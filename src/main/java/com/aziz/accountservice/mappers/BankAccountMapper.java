@@ -28,8 +28,8 @@ public interface BankAccountMapper {
     @Mapping(target = "type", source = "bankAccountUpdateRequestTDO.type")
     BankAccount RequestTDOToBankAccount(BankAccountUpdateRequestTDO bankAccountUpdateRequestTDO);
 
-    @Mapping(target = "balance",source = "requestTDO.balance")
-    @Mapping(target = "currency",source = "requestTDO.currency")
-    @Mapping(target = "type",source = "requestTDO.type")
-    BankAccountResponseDTO convertRequestTDOToResponseTDO(BankAccountUpdateRequestTDO requestTDO);
+//    @Mapping(target = "balance",source = "requestTDO.balance")
+//    @Mapping(target = "currency",source = "requestTDO.currency")
+//    @Mapping(target = "type",source = "requestTDO.type")
+//    BankAccountResponseDTO convertRequestTDOToResponseTDO(BankAccountUpdateRequestTDO requestTDO);
 }
