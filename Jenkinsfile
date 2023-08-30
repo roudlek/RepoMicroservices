@@ -7,5 +7,11 @@ pipeline {
       }
     }
 
+    stage('List content') {
+      steps {
+        sh 'ls -la'
+      }
+    }
+
   }
 }
