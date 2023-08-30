@@ -1,4 +1,4 @@
 FROM openjdk:17
 EXPOSE 8082
-ADD target/devops-integration.jar devops-integration.jar
-ENTRYPOINT ["java","-jar","/devops-integration.jar"]
+COPY target/account-service-main.jar account-service-main.jar
+ENTRYPOINT ["java","-jar","account-service-main.jar"]
