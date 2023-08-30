@@ -31,5 +31,11 @@ pipeline {
       }
     }
 
+    stage('Package the app') {
+      steps {
+        sh 'mvn clean package'
+      }
+    }
+
   }
 }
