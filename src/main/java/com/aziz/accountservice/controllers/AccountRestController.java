@@ -34,7 +34,6 @@ public class AccountRestController{
     //@RequestBody is used to bind the request body to a method parameter, typically used to receive JSON or XML data in the
     // request body. The request body is converted to a Java object using a message converter.
     // This annotation is used for POST, PUT and PATCH requests.
-    // a comment
     @PostMapping("/bankAccounts")
     public BankAccount addBankAccount (@RequestBody BankAccount bankAccount){
         if(bankAccount.getId() == null || bankAccount.getId().isEmpty()) {
