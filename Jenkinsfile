@@ -19,5 +19,11 @@ pipeline {
       }
     }
 
+    stage('Complile') {
+      steps {
+        sh 'mvn compile'
+      }
+    }
+
   }
 }
