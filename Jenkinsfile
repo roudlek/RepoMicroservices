@@ -39,7 +39,7 @@ pipeline {
 
     stage('docker build') {
       steps {
-        sh 'docker build -t aliasname/devops-integration .'
+        sh 'docker build -t account-service-main .'
       }
     }
 
