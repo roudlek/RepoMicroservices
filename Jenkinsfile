@@ -39,7 +39,7 @@ pipeline {
 
     stage('docker build') {
       steps {
-        sh 'sudo docker build -t account-service-main .'
+        sh 'docker build -t account-service-main .'
       }
     }
 
